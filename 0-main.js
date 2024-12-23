@@ -12,6 +12,7 @@ import * as dotenv from "dotenv";
 import { createPineconeIndex } from "./1-createPineconeIndex.js";
 import { updatePinecone } from "./2-updatePinecone.js";
 import { queryPineconeVectorStoreAndQueryLLM } from "./3-queryPineconeAndQueryGPT.js";
+import { v4 as uuidv4 } from 'uuid';
 // 6. Load environment variables
 dotenv.config();
 // 7. Set up DirectoryLoader to load documents from the ./documents directory
@@ -22,7 +23,7 @@ const loader = new DirectoryLoader("./documents", {
 const docs = await loader.load();
 // 8. Set up variables for the filename, question, and index settings
 const question = "Who is mr Gatsby?";
-const indexName = "your-pinecone-index-name";
+const indexName = `teste-${uuidv4()}`;
 const vectorDimension = 1536;
 // 9. Initialize Pinecone client with API key and environment
 const client = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });
