@@ -50,11 +50,7 @@ export const updatePinecone = async (client, indexName, docs) => {
       batch.push(vector);
       // When batch is full or it's the last item, upsert the vectors
       if (batch.length === batchSize || idx === chunks.length - 1) {
-        await index.upsert({
-          upsertRequest: {
-            vectors: batch,
-          },
-        });
+        await index.upsert(batch);
         // Empty the batch
         batch = [];
       }
