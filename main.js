@@ -4,9 +4,9 @@ import { DirectoryLoader } from "langchain/document_loaders/fs/directory";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { TextLoader } from "langchain/document_loaders/fs/text";
 import { v4 as uuidv4 } from 'uuid';
-import { createPineconeIndex } from "./createNewIndex.js";
-import { queryPineconeVectorStoreAndQueryLLM } from "./queryPineconeAndGPT.js";
-import { updatePinecone } from "./updatePinecone.js";
+import createNewIndex from "./createNewIndex.js";
+import queryPineconeAndGPT from "./queryPineconeAndGPT.js";
+import updatePinecone from "./updatePinecone.js";
 
 dotenv.config();
 
@@ -22,9 +22,9 @@ const vectorDimension = 1536;
 const client = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });
 
 (async () => {
-  await createPineconeIndex(client, indexName, vectorDimension);
+  await createNewIndex(client, indexName, vectorDimension);
 
   await updatePinecone(client, indexName, docs);
 
-  await queryPineconeVectorStoreAndQueryLLM(client, indexName, question);
+  await queryPineconeAndGPT(client, indexName, question);
 })();

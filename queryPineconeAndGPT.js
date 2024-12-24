@@ -1,7 +1,7 @@
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import OpenAI from "openai";
 
-export const queryPineconeVectorStoreAndQueryLLM = async (
+export default async (
   client,
   indexName,
   prompt

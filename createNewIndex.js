@@ -1,4 +1,4 @@
-export const createPineconeIndex = async (
+export default async (
   client,
   indexName,
   vectorDimension

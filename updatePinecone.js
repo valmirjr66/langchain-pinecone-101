@@ -1,7 +1,7 @@
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
-export const updatePinecone = async (client, indexName, docs) => {
+export default async (client, indexName, docs) => {
   console.log("Retrieving Pinecone index...");
 
   const index = client.Index(indexName);
