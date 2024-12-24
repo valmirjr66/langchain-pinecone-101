@@ -17,12 +17,11 @@ const loader = new DirectoryLoader("./documents", {
 const docs = await loader.load();
 const question = "Who is mr Gatsby?";
 const indexName = `teste-${uuidv4()}`;
-const vectorDimension = 1536;
 
-const client = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });
+const client = new Pinecone({ apiKey: process.env.PINECONE_API_KEY! });
 
 (async () => {
-  await createNewIndex(client, indexName, vectorDimension);
+  await createNewIndex(client, indexName);
 
   await updatePinecone(client, indexName, docs);
 

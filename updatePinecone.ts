@@ -1,7 +1,13 @@
+import { Pinecone } from "@pinecone-database/pinecone";
+import { Document } from "langchain/document";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
-export default async (client, indexName, docs) => {
+export default async (
+  client: Pinecone,
+  indexName: string,
+  docs: Document<Record<string, any>>[]
+) => {
   console.log("Retrieving Pinecone index...");
 
   const index = client.Index(indexName);
@@ -36,7 +42,17 @@ export default async (client, indexName, docs) => {
     );
 
     const batchSize = 100;
-    let batch = [];
+
+    let batch: {
+      id: string;
+      values: number[];
+      metadata: {
+        loc: string;
+        pageContent: string;
+        txtPath: any;
+      };
+    }[] = [];
+
     for (let idx = 0; idx < chunks.length; idx++) {
       const chunk = chunks[idx];
       const vector = {

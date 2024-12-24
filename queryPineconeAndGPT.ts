@@ -1,10 +1,11 @@
+import { Pinecone } from "@pinecone-database/pinecone";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import OpenAI from "openai";
 
 export default async (
-  client,
-  indexName,
-  prompt
+  client: Pinecone,
+  indexName: string,
+  prompt: string
 ) => {
   console.log("Querying Pinecone vector store...");
 

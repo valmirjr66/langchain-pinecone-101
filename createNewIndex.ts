@@ -1,7 +1,8 @@
+import { Pinecone } from "@pinecone-database/pinecone";
+
 export default async (
-  client,
-  indexName,
-  vectorDimension
+  client: Pinecone,
+  indexName: string
 ) => {
   const { indexes } = await client.listIndexes();
 
@@ -14,7 +15,7 @@ export default async (
 
   const createClient = await client.createIndex({
     name: indexName,
-    dimension: vectorDimension,
+    dimension: 1536,
     metric: "cosine",
     spec: {
       serverless: {
