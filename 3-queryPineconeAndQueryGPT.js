@@ -1,18 +1,15 @@
-// 1. Import required modules
-import { loadQAStuffChain } from "langchain/chains";
-import { Document } from "langchain/document";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { OpenAI } from "langchain/llms/openai";
+import OpenAI from "openai";
 
 export const queryPineconeVectorStoreAndQueryLLM = async (
   client,
   indexName,
-  question
+  prompt
 ) => {
   console.log("Querying Pinecone vector store...");
 
   const index = client.Index(indexName);
-  const queryEmbedding = await new OpenAIEmbeddings().embedQuery(question);
+  const queryEmbedding = await new OpenAIEmbeddings().embedQuery(prompt);
 
   let queryResponse = await index.query({
     topK: 10,
@@ -23,21 +20,37 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
 
   console.log(`Found ${queryResponse.matches.length} matches...`);
 
-  console.log(`Asking question: ${question}...`);
-  if (queryResponse.matches.length) {
-    const llm = new OpenAI({});
-    const chain = loadQAStuffChain(llm);
+  console.log(`Asking question: ${prompt}...`);
 
+  if (queryResponse.matches.length) {
     const concatenatedPageContent = queryResponse.matches
       .map((match) => match.metadata.pageContent)
       .join(" ");
 
-    const result = await chain.call({
-      input_documents: [new Document({ pageContent: concatenatedPageContent })],
-      question: question,
+    const openaiClient = new OpenAI();
+
+    const augmentedPrompt =
+      `Using the following information, answer the prompt at end: ${concatenatedPageContent}
+
+    ========================
+
+    ${prompt}`;
+
+    const completion = await openaiClient.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content: "You are a helpful assistant created to answer question based on RAG retrieval."
+        },
+        {
+          role: "user",
+          content: augmentedPrompt
+        },
+      ],
     });
 
-    console.log(`Answer: ${result.text}`);
+    console.log(`Answer: ${completion.choices[0].message.content}`);
   } else {
     console.log("Since there are no matches, GPT-3 will not be queried.");
   }
