@@ -50,8 +50,8 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
       ],
     });
 
-    console.log(`Answer: ${completion.choices[0].message.content}`);
+    console.log(`\nAnswer: ${completion.choices[0].message.content}`);
   } else {
-    console.log("Since there are no matches, GPT-3 will not be queried.");
+    console.log("No matches.");
   }
 };
