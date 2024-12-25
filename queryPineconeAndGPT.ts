@@ -21,8 +21,6 @@ export default async (
 
   console.log(`Found ${queryResponse.matches.length} matches...`);
 
-  console.log(`Asking question: ${prompt}...`);
-
   if (queryResponse.matches.length) {
     const concatenatedPageContent = queryResponse.matches
       .map((match) => match.metadata.pageContent)
