@@ -1,4 +1,4 @@
-import { Pinecone } from "@pinecone-database/pinecone";
+import { Pinecone, PineconeRecord, RecordMetadata } from "@pinecone-database/pinecone";
 import { Document } from "langchain/document";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
@@ -15,7 +15,8 @@ export default async (
   console.log(`Pinecone index retrieved: ${indexName}`);
 
   for (const doc of docs) {
-    console.log(`Processing document: ${doc.metadata.source}`);
+    console.log(`Processing document: ${doc.metadata.source}...`);
+
     const txtPath = doc.metadata.source;
     const text = doc.pageContent;
 
@@ -29,36 +30,27 @@ export default async (
     const chunks = await textSplitter.createDocuments([text]);
 
     console.log(`Text split into ${chunks.length} chunks`);
-    console.log(
-      `Calling OpenAI's Embedding endpoint documents with ${chunks.length} text chunks ...`
-    );
 
-    const embeddingsArrays = await new OpenAIEmbeddings().embedDocuments(
-      chunks.map((chunk) => chunk.pageContent.replace(/\n/g, " "))
-    );
+    console.log(`Embedding ${chunks.length} text chunks...`);
+
+    const embeddingsArrays = await new OpenAIEmbeddings()
+      .embedDocuments(
+        chunks.map((chunk) => chunk.pageContent.replace(/\n/g, " "))
+      );
 
     console.log("Finished embedding documents");
-    console.log(
-      `Creating ${chunks.length} vectors array with id, values and metadata...`
-    );
+
+    console.log(`Creating ${chunks.length} vectors array with id, values and metadata...`);
 
     const batchSize = 100;
 
-    let batch: {
-      id: string;
-      values: number[];
-      metadata: {
-        loc: string;
-        pageContent: string;
-        txtPath: any;
-      };
-    }[] = [];
+    let batch: PineconeRecord<RecordMetadata>[] = [];
 
-    for (let idx = 0; idx < chunks.length; idx++) {
-      const chunk = chunks[idx];
+    for (let i = 0; i < chunks.length; i++) {
+      const chunk = chunks[i];
       const vector = {
-        id: `${txtPath}_${idx}`,
-        values: embeddingsArrays[idx],
+        id: `${txtPath}_${i}`,
+        values: embeddingsArrays[i],
         metadata: {
           ...chunk.metadata,
           loc: JSON.stringify(chunk.metadata.loc),
@@ -66,9 +58,10 @@ export default async (
           txtPath: txtPath,
         },
       };
+
       batch.push(vector);
 
-      if (batch.length === batchSize || idx === chunks.length - 1) {
+      if (batch.length === batchSize || i === chunks.length - 1) {
         await index.upsert(batch);
         batch = [];
       }

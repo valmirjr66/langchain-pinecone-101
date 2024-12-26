@@ -14,6 +14,7 @@ const loader = new DirectoryLoader("./documents", {
   ".txt": (path) => new TextLoader(path),
   ".pdf": (path) => new PDFLoader(path),
 });
+
 const docs = await loader.load();
 const question = "How to name raw footage files?";
 const indexName = `teste-${uuidv4()}`;

@@ -24,7 +24,7 @@ export default async (
     }
   });
 
-  console.log(`Created with client:`, createClient);
+  console.log('Created with client:', createClient);
 
   await new Promise((resolve) => setTimeout(resolve, 10000));
 };

@@ -30,10 +30,8 @@ export default async (
 
     const augmentedPrompt =
       `Using the following information, answer the prompt at end: ${concatenatedPageContent}
-
-    ========================
-
-    ${prompt}`;
+      \n========================\n
+      ${prompt}`;
 
     const completion = await openaiClient.chat.completions.create({
       model: "gpt-4o-mini",
