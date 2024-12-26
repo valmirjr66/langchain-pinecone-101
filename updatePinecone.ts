@@ -1,18 +1,24 @@
 import { Pinecone, PineconeRecord, RecordMetadata } from "@pinecone-database/pinecone";
-import { Document } from "langchain/document";
+import { DirectoryLoader, PDFLoader, TextLoader } from "langchain/document_loaders";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
 export default async (
   client: Pinecone,
   indexName: string,
-  docs: Document<Record<string, any>>[]
 ) => {
   console.log("Retrieving Pinecone index...");
 
   const index = client.Index(indexName);
 
-  console.log(`Pinecone index retrieved: ${indexName}`);
+  console.log(`Pinecone index retrieved`);
+
+  const loader = new DirectoryLoader("./documents", {
+    ".txt": (path) => new TextLoader(path),
+    ".pdf": (path) => new PDFLoader(path),
+  });
+
+  const docs = await loader.load();
 
   for (const doc of docs) {
     console.log(`Processing document: ${doc.metadata.source}...`);
