@@ -15,7 +15,7 @@ const loader = new DirectoryLoader("./documents", {
   ".pdf": (path) => new PDFLoader(path),
 });
 const docs = await loader.load();
-const question = "Who is mr Gatsby?";
+const question = "How to name raw footage files?";
 const indexName = `teste-${uuidv4()}`;
 
 const client = new Pinecone({ apiKey: process.env.PINECONE_API_KEY! });
