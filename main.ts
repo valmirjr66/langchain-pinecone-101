@@ -16,7 +16,7 @@ const loader = new DirectoryLoader("./documents", {
 });
 
 const docs = await loader.load();
-const question = "How to name raw footage files?";
+const prompt = "How to name raw footage files?";
 const indexName = `teste-${uuidv4()}`;
 
 const client = new Pinecone({ apiKey: process.env.PINECONE_API_KEY! });
@@ -26,5 +26,5 @@ const client = new Pinecone({ apiKey: process.env.PINECONE_API_KEY! });
 
   await updatePinecone(client, indexName, docs);
 
-  await queryPineconeAndGPT(client, indexName, question);
+  await queryPineconeAndGPT(client, indexName, prompt);
 })();
