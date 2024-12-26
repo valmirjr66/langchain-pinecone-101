@@ -21,6 +21,7 @@ export default async (
 
     const textSplitter = new RecursiveCharacterTextSplitter({
       chunkSize: 1000,
+      chunkOverlap: 100,
     });
 
     console.log("Splitting text into chunks...");
