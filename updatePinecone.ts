@@ -39,7 +39,7 @@ export default async (
 
     console.log("Finished embedding documents");
     console.log(
-      `Creating ${chunks.length} vectors array with id, values, and metadata...`
+      `Creating ${chunks.length} vectors array with id, values and metadata...`
     );
 
     const batchSize = 100;
