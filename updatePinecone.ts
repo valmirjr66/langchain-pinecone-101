@@ -1,5 +1,5 @@
 import { Pinecone, PineconeRecord, RecordMetadata } from "@pinecone-database/pinecone";
-import { DirectoryLoader } from "langchain/document_loaders";
+import { DirectoryLoader } from "langchain/document_loaders/fs/directory";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { TextLoader } from "langchain/document_loaders/fs/text";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
