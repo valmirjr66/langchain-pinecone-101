@@ -7,15 +7,15 @@ import updatePinecone from "./updatePinecone.js";
 
 dotenv.config();
 
-const prompt = "How to name raw footage files?";
-const indexName = `teste-${uuidv4()}`;
+const PROMPT = "How to name raw footage files?";
+const INDEX_NAME = `teste-${uuidv4()}`;
 
 const client = new Pinecone({ apiKey: process.env.PINECONE_API_KEY! });
 
 (async () => {
-  await createNewIndex(client, indexName);
+  await createNewIndex(client, INDEX_NAME);
 
-  await updatePinecone(client, indexName);
+  await updatePinecone(client, INDEX_NAME);
 
-  await queryPineconeAndGPT(client, indexName, prompt);
+  await queryPineconeAndGPT(client, INDEX_NAME, PROMPT);
 })();
