@@ -1,0 +1,59 @@
+**Landing page da cooperativa:** https://comp.coop/
+
+Essa será a primeira vez que teremos contato com a comp.coop
+
+### Contato inicial:
+
+🗣 Hey!
+
+I saw your post on [r/cooperatives](https://www.reddit.com/r/cooperatives) looking for tech coops. Earlier this year myself and 2 wonderful co-founders started comp.coop, which seems to have a lot of alignment with what you're trying to do with your business. We do end-to-end software product design and implementation, with the twist being that we almost exclusively cater to worker-owned/worker-led businesses.
+
+It'd be super cool to chat and learn from each other - there aren't that many coop folks outside of Europe doing full-lifecycle product development. We're still new ourselves (6 months doing it full time), but have met with hundreds of folks in the space and could probably save you some time with your research.
+
+If you're interested, feel free to grab any open slot at […]. Looking forward to meeting!
+
+Best, Andy
+
+####
+
+Sugestão para este roteiro: 1:30h // 1 hora não foi o suficiente para este roteiro
+
+### Planejamento:
+
+1. Nos apresentar (quem somos e nossa trajetória até aqui) - **máximo 5 a 8 minutos**
+2. Pedir para se apresentarem e darem uma introdução da trajetória deles
+3. Questões que podem ser interessantes de se perguntar:
+    1. You have a path in big techs (such as Google), why did you chose founding a cooperative instead? (Valmir)
+    2. Checking the website, we often see the term “worker-owned” to describe the company. What does it mean to you folks? (Valmir)
+    3. How would you describe and pitch your own value delivery? (João)
+    4. Which processes do you use for the product discovery prior to any software development? (João)
+    5. How do you describe your own communication with your clients and prospections? How do you reach’em and present yourselves? How the market received it? (Latado)
+    6. How would you say was the branding process that you went through? Would you point us any important reference and communication material? (Isabella)
+    7. Do y’all have well defined individual responsibilities? Or do you prefer a more distributed structure? (Valmir)
+    8. You niche seems to be really focused on worker-led businesses. Would you say it considers any other factors? (Valmir)
+    9. In your view, what are the most common pains that small and medium enterprises face when trying to adopt digital transformation in their processes, particularly in terms of systems? (Gill)
+    10. Feel free not to answer this one if you’re not comfortable: but how do you price your own work? (Latado)
+        
+        On your website there's info about unique payment and pricing models. We are in a pre-business stage in our project, and one of the biggest questions is how to price our tech solutions in a way that suits the working class instead of scaring them away.
+        
+    11. You mentioned on Reddit that not many folks are doing that outside of Europe. Do you know any relevant exceptions or are all of your references euro based? (João)
+    12. If you could give a tip for consulting enterprises starting now, what would you suggest in terms of dealing with infrastructure? (Gill)
+    
+    4. Pergunta final: Based on your client prospection experience, what would you say is a good advice for Latam coops such as ourselves?
+    
+
+### Quem quer fazer perguntas?
+
+Se, **e apenas se**, você se sentir confortável para fazer perguntas (lembrando que a conversa será em inglês) coloque seu nome na lista. Assim podemos nos dividir para evitar de apenas uma pessoa falar. Se você não colocar o nome na lista não significa que você deverá ficar em silêncio, sinta-se à vontade para falar se achar necessário.
+
+- Valmir
+- João
+- Isabella
+- Latado (se tiver de mic)
+- Gill (se conseguir colar em casa, agora se estiver no restaurante n vai rolar pq tá sem o fone de mic decente)
+
+### Agendamento:
+
+**Horário:** 14/06/24 às 13h30 (Horário de Brasília)
+
+**Link:** https://meet.google.com/nja-cosa-tpb
