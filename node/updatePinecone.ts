@@ -4,7 +4,6 @@ import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { TextLoader } from "langchain/document_loaders/fs/text";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { exit } from "process";
 
 export default async (
   client: Pinecone,
@@ -18,7 +17,7 @@ export default async (
 
   const loader = new DirectoryLoader("./documents", {
     ".txt": (path) => new TextLoader(path),
-    ".pdf": (path) => new PDFLoader(path),
+    ".pdf": (path) => new PDFLoader(path, { splitPages: false }),
   },);
 
   const docs = await loader.load();
