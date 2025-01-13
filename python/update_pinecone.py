@@ -1,12 +1,9 @@
-from langchain_community.document_loaders import (
-    DirectoryLoader,
-    TextLoader,
-    PDFMinerLoader,
-)
+from langchain_community.document_loaders import DirectoryLoader
 from langchain_community.document_loaders import DirectoryLoader
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from pinecone.grpc import PineconeGRPC as Pinecone
+from langchain_community.document_loaders import PyPDFLoader
 
 
 async def update_pinecone(client: Pinecone, index_name: str):
@@ -16,9 +13,9 @@ async def update_pinecone(client: Pinecone, index_name: str):
 
     print("Pinecone index retrieved")
 
-    loader = DirectoryLoader("./documents", glob="**/*.pdf")
+    loader = DirectoryLoader("./documents", glob="**/*.pdf", loader_cls=PyPDFLoader)
 
-    docs = await loader.load()
+    docs = loader.load()
 
     for doc in docs:
         print(f"Processing document: {doc.metadata['source']}...")
