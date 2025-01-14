@@ -15,7 +15,7 @@
     "langchain": "^0.0.73",
     "openai": "^4.77.0",
     "pdf-parse": "^1.1.1",
-    "uuid": "^11.0.3"
+    "readline-sync": "^1.4.10"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
